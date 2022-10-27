@@ -108,8 +108,12 @@ public class EjercicioE3Edu {
                 default :        
             }
             
+
            //la exclamacion con el parentesis significa que todo lo que todo lo
            // no entre en el parentesis significa falso
         } while (!(menu.equalsIgnoreCase("salir")));
+
+            
+
     }
 }
