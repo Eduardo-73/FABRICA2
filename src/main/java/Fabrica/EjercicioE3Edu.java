@@ -15,16 +15,17 @@ public class EjercicioE3Edu {
 
     public static void main(String[] args) {
          
-        
+        //Inicializo las variables necesarias
         String menu;
+        String menu2;
         final double COSTE_MANO_DE_OBRE1 = 0.5, COSTE_MANO_DE_OBRE2 = 0.9;
         final double PORCENTAJE1 = 0.5, PORCENTAJE2 = 0.65;
         final double MANO_DE_OBRA_M1_T1 = 0.15, MANO_DE_OBRA_P1_M2_T2 = 0.22;
-        String salir = "Salir";
         double numMateriaPrima;
         double costeProduccion;
         double precioVenta = 0;
-                        
+        
+        
         do {       
             
             menu = JOptionPane.showInputDialog( """
@@ -35,16 +36,17 @@ public class EjercicioE3Edu {
             switch(menu){
                 
                 case "1" :
-                 
-                String menu2 = JOptionPane.showInputDialog("""
+            do {  
+                
+                menu2 = JOptionPane.showInputDialog("""
                                                            
                                        ------------------------------------
                                                 PRODUCTOS
-                                            1ºMantecados de Limón 
-                                            2ºPolvorones
-                                            3ºTurrón de chocolate
-                                            4ºTurrón clásica
-                                            5ºMazapanes
+                                            1ºMantecados de Limón (M1)
+                                            2ºPolvorones (P1)
+                                            3ºTurrón de chocolate (T1)
+                                            4ºTurrón clásica (T2)
+                                            5ºMazapanes (M2)
                                        -------------------------------------  
                                                            """).toUpperCase();
                 
@@ -54,8 +56,10 @@ public class EjercicioE3Edu {
                         numMateriaPrima = Double.parseDouble(JOptionPane.showInputDialog
                           ("Introduce la materia prima a utilizar: "));
                         
-                        if(numMateriaPrima >= COSTE_MANO_DE_OBRE1 && numMateriaPrima >= COSTE_MANO_DE_OBRE2){
-                
+                        while(numMateriaPrima <= COSTE_MANO_DE_OBRE1 && numMateriaPrima >= COSTE_MANO_DE_OBRE2){
+                              numMateriaPrima = Double.parseDouble(JOptionPane.showInputDialog
+                          ("Introduce la materia prima a utilizar: "));
+                        }
                         costeProduccion = numMateriaPrima + MANO_DE_OBRA_M1_T1;
                         precioVenta = costeProduccion + (costeProduccion * PORCENTAJE1);
                         
@@ -63,20 +67,23 @@ public class EjercicioE3Edu {
                                                             El coste de produccion es de %.2f € y el precio de venta es de
                                                             %.2f €.
                                                             """.formatted(costeProduccion, precioVenta));
-                        }
+                        
                          if(precioVenta >= 2500){
-                            System.out.println("Hay beneficios ");
+                          JOptionPane.showMessageDialog(null,"Hay beneficios ");
                         }else{
-                            System.out.println("No hay beneficios ");
+                            JOptionPane.showMessageDialog(null,"No hay beneficios ");
                         }
+                      
                      break;
                     case "2", "4", "5", "P1", "T2", "M2" :
                         
                         numMateriaPrima = Double.parseDouble(JOptionPane.showInputDialog
                           ("Introduce la materia prima a utilizar: "));
                         
-                        if(numMateriaPrima >= COSTE_MANO_DE_OBRE1 && numMateriaPrima >= COSTE_MANO_DE_OBRE2){
-
+                        while(numMateriaPrima <= COSTE_MANO_DE_OBRE1 && numMateriaPrima >= COSTE_MANO_DE_OBRE2){
+                           numMateriaPrima = Double.parseDouble(JOptionPane.showInputDialog
+                          ("Introduce la materia prima a utilizar: "));
+                        }
                         costeProduccion = numMateriaPrima + MANO_DE_OBRA_P1_M2_T2;
                         precioVenta = costeProduccion + (costeProduccion * PORCENTAJE2);
                         
@@ -84,21 +91,25 @@ public class EjercicioE3Edu {
                                                             El coste de produccion es de %.2f € y el precio de venta es de
                                                             %.2f €.
                                                             """.formatted(costeProduccion, precioVenta));
-                        }
+                        
                         if(precioVenta >= 2500){
                            JOptionPane.showMessageDialog(null,"Hay beneficios ");
                         }else{
                             JOptionPane.showMessageDialog(null,"No hay beneficios ");
                         }
+                      
                      break;
                     default :
                 }
-                
+            
+            }while(!(menu2.equalsIgnoreCase("salir")));
+            
                 break;
                 default :        
             }
             
-            
-        } while (!salir.equalsIgnoreCase(salir));
+           //la exclamacion con el parentesis significa que todo lo que todo lo
+           // no entre en el parentesis significa falso
+        } while (!(menu.equalsIgnoreCase("salir")));
     }
 }
